@@ -1,8 +1,21 @@
+"""Game of Life, using numpy and matplotlib.
+
+This is a mix of functions for simulating and visualizing the Game of
+Life, along with a few demos.
+
+Example:
+    weird_shape_demo()
+
+In general, the game is represented as a 2d numpy array, with entries
+0 (dead) or 1 (alive). Handling boundary values always requires some
+additional constraint -- at present, the only option implemented is
+boundary values = 0. 
+
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-# a "board" is a 2d array with zeros on the boundary
-
 
 def zero_boundary(Z):
     "Sets the boundary elements of the 2d array to zero."
@@ -45,7 +58,12 @@ def plot(Z):
 
     
 def animate(Z, iters, interval=200, figsize=(5,5)):
-    "Animate the development, from initial state Z."
+    """Animate the development, from initial state Z.
+
+    Note: In order for this to work properly, a reference to the
+    resulting animation object is returned. This must be held until
+    the animation is complete!
+    """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_axes([0.0, 0.0, 1.0, 1.0], frameon=False,
                       xticks=[], yticks=[])
